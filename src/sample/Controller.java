@@ -10,6 +10,7 @@ import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -17,8 +18,10 @@ public class Controller implements Initializable {
     private LineChart<?, ?> linechart;
     @FXML
     private ImageView Img1;
+    @FXML
+    private Button DashboardButton;
 
-    public void Dashboard(ActionEvent e){
+    private void handleDashboardButton(ActionEvent e){
         System.out.println("Dashboard");
 
     }
@@ -34,25 +37,42 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
+        try {
             iniLineChart();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
 
     }
 
 
 
-    private void iniLineChart(){
+    private void iniLineChart() throws SQLException {
+
+
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/registration?serverTimezone=UTC", "root", "password");
+
+        Statement stmt = connection.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, bills FROM usertable");
+
+        DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+
+
         XYChart.Series series = new XYChart.Series();
 
-        series.getData().add(new XYChart.Data("Monday",8));
-        series.getData().add(new XYChart.Data("Tuesday",13));
-        series.getData().add(new XYChart.Data("Wednesday",15));
-        series.getData().add(new XYChart.Data("Thursday",17));
-        series.getData().add(new XYChart.Data("Friday",20));
-        series.getData().add(new XYChart.Data("Saturday",22));
-        series.getData().add(new XYChart.Data("Sunday",25));
 
-        linechart.getData().addAll(series);
+        while(rs.next()) {
+            series.getData().add(new XYChart.Data(rs.getString("date_of_expense"), rs.getDouble("bills")));
+        }
+
+        linechart.getData().add(series);
+
+
+
+
 
     }
 }
