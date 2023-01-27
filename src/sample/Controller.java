@@ -1,35 +1,48 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.LineChart;
 import javafx.fxml.FXML;
-
-import javax.swing.*;
-import javax.swing.text.html.ImageView;
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
     private LineChart<?, ?> linechart;
+
+
     @FXML
-    private ImageView Img1;
+    private Button dshbButton;
 
-    public void Dashboard(ActionEvent e){
-        System.out.println("Dashboard");
+    @FXML
+    private Button golButton;
+
+    @FXML
+    private Button tblButton;
+
+
+
+    @FXML
+    void Dashboard(ActionEvent event)
+    {
+        System.out.println("AASASda");
+    }
+
+    @FXML
+    void Goals(ActionEvent event)
+    {
 
     }
-    public void Tables(ActionEvent e){
-        System.out.println("Tables");
+
+    @FXML
+    void Tables(ActionEvent event)
+    {
 
     }
-    public void Goals(ActionEvent e){
-        System.out.println("Goals");
 
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
