@@ -78,11 +78,11 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="128.0" prefWidth="430.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="319.0" prefWidth="267.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
-         <Label alignment="TOP_LEFT" contentDisplay="CENTER" prefHeight="61.0" prefWidth="171.0" text="Calculate your future" textFill="#fcf8f8">
+         <Label alignment="TOP_LEFT" contentDisplay="CENTER" prefHeight="93.0" prefWidth="171.0" text="Calculate your future" textFill="#fcf8f8">
             <font>
                <Font name="ArtifaktElement-Regular" size="13.0" />
             </font>
@@ -90,12 +90,12 @@
                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
          </Label>
-         <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="248.0" prefWidth="430.0">
-            <VBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="244.0" prefWidth="416.0">
+         <VBox prefHeight="280.0" prefWidth="302.0">
+            <VBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="312.0">
                <children>
-                  <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="243.0" prefWidth="415.0">
+                  <StackPane prefHeight="197.0" prefWidth="265.0">
                      <children>
-                        <TreeTableView prefHeight="177.0" prefWidth="375.0">
+                        <TreeTableView prefHeight="200.0" prefWidth="200.0">
                           <columns>
                             <TreeTableColumn prefWidth="75.0" text="A" />
                             <TreeTableColumn prefWidth="75.0" text="B" />
