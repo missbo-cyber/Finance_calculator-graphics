@@ -2,9 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -14,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="gradient-background" stylesheets="@../resources/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="gradient-background" stylesheets="@../resources/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GoalsController">
    <top>
       <HBox prefHeight="61.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 
@@ -51,7 +48,7 @@
          </HBox>
          <VBox prefHeight="236.0" prefWidth="140.0">
             <HBox prefHeight="59.0" prefWidth="93.0">
-               <Button fx:id="dshbButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Dashboard" prefHeight="25.0" prefWidth="75.0" text="Dashboard" textFill="#fcf9f9">
+               <Button fx:id="dshbButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeSceneToDashboard" prefHeight="25.0" prefWidth="75.0" text="Dashboard" textFill="#fcf9f9">
                   <styleClass>
                      <String fx:value="gradient-background" />
                      <String fx:value="line-color" />
@@ -59,7 +56,7 @@
                </Button>
             </HBox>
             <HBox maxHeight="-Infinity" prefHeight="60.0" prefWidth="130.0">
-               <Button fx:id="tblButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Tables" prefHeight="25.0" prefWidth="75.0" text="Tables" textFill="#fcf9f9">
+               <Button fx:id="tblButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeSceneToTables" prefHeight="25.0" prefWidth="75.0" text="Tables" textFill="#fcf9f9">
                   <styleClass>
                      <String fx:value="gradient-background" />
                      <String fx:value="line-color" />
@@ -67,7 +64,7 @@
                </Button>
             </HBox>
             <HBox prefHeight="59.0">
-               <Button fx:id="golButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Goals" prefHeight="25.0" prefWidth="76.0" text="Goals" textFill="#fcf9f9">
+               <Button fx:id="golButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeSceneToGoals" prefHeight="25.0" prefWidth="76.0" text="Goals" textFill="#fcf9f9">
                   <styleClass>
                      <String fx:value="gradient-background" />
                      <String fx:value="line-color" />
@@ -93,28 +90,7 @@
             </Label>
          </VBox>
          <VBox prefHeight="200.0" prefWidth="100.0">
-            <Label contentDisplay="CENTER" prefHeight="40.0" prefWidth="171.0" text="Your expenses" textFill="#fcf8f8">
-               <font>
-                  <Font name="ArtifaktElement-Regular" size="13.0" />
-               </font>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </Label>
-            <VBox maxWidth="-Infinity" prefHeight="160.0" prefWidth="160.0">
-               <LineChart fx:id="linechart" stylesheets="@../resources/styles.css">
-                  <xAxis>
-                     <CategoryAxis side="BOTTOM" />
-                  </xAxis>
-                  <yAxis>
-                     <NumberAxis side="LEFT" />
-                  </yAxis>
-                  <styleClass>
-                     <String fx:value="container" />
-                     <String fx:value="line-color" />
-                  </styleClass>
-               </LineChart>
-            </VBox>
+            <VBox maxWidth="-Infinity" prefHeight="160.0" prefWidth="160.0" />
          </VBox>
       </VBox>
    </center>

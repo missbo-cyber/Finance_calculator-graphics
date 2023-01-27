@@ -2,52 +2,48 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.LineChart;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class DashboardController extends SceneController implements Initializable
+{
     @FXML
     private LineChart<?, ?> linechart;
 
 
-    @FXML
-    private Button dshbButton;
-
-    @FXML
-    private Button golButton;
-
-    @FXML
-    private Button tblButton;
-
-
-
-    @FXML
-    void Dashboard(ActionEvent event)
+    @Override
+    public void changeSceneToTables(ActionEvent event) throws IOException
     {
-        System.out.println("AASASda");
+        super.changeSceneToTables(event);
     }
 
-    @FXML
-    void Goals(ActionEvent event)
+    @Override
+    public void changeSceneToDashboard(ActionEvent event) throws IOException
     {
-
+        super.changeSceneToDashboard(event);
     }
 
-    @FXML
-    void Tables(ActionEvent event)
+    @Override
+    public void changeSceneToGoals(ActionEvent event) throws IOException
     {
-
+        super.changeSceneToGoals(event);
     }
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
 
-            iniLineChart();
+        iniLineChart();
 
 
     }
