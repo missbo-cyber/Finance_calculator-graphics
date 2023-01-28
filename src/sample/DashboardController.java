@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class DashboardController extends SceneController implements Initializable
@@ -43,25 +44,40 @@ public class DashboardController extends SceneController implements Initializabl
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
 
-        iniLineChart();
+        try
+        {
+            iniLineChart();
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
 
 
     }
 
 
 
-    private void iniLineChart(){
+    private void iniLineChart() throws SQLException
+    {
+
+
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/usertable?serverTimezone=UTC", "root", "password");
+
+        Statement stmt = connection.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, bills FROM usertable");
+
+        DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+
+
         XYChart.Series series = new XYChart.Series();
 
-        series.getData().add(new XYChart.Data("Monday",8));
-        series.getData().add(new XYChart.Data("Tuesday",13));
-        series.getData().add(new XYChart.Data("Wednesday",15));
-        series.getData().add(new XYChart.Data("Thursday",17));
-        series.getData().add(new XYChart.Data("Friday",20));
-        series.getData().add(new XYChart.Data("Saturday",22));
-        series.getData().add(new XYChart.Data("Sunday",25));
 
-        linechart.getData().addAll(series);
+        while(rs.next()) {
+            series.getData().add(new XYChart.Data(rs.getString("date_of_expense"), rs.getDouble("bills")));
+        }
+
+        linechart.getData().add(series);
 
     }
 }
