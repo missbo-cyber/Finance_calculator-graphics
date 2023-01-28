@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="gradient-background" stylesheets="@../resources/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TablesController">
+   <top>
+      <HBox prefHeight="61.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+
+            <Label prefHeight="62.0" prefWidth="199.0" text="ADMIN DASHBOARD" textFill="#fcf5f5">
+               <font>
+                  <Font name="ArtifaktElement-Regular" size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="210.0" prefWidth="150.0" styleClass="container" stylesheets="@../resources/styles.css" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <Label contentDisplay="CENTER" prefHeight="18.0" prefWidth="79.0" text="Missbo" textAlignment="CENTER" textFill="#fcf8f8">
+            <font>
+               <Font name="ArtifaktElement-Regular" size="13.0" />
+            </font>
+            <padding>
+               <Insets bottom="10.0" right="10.0" top="10.0" />
+            </padding>
+         </Label>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <ImageView fitHeight="50.0" fitWidth="50.0" focusTraversable="true" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/piesdoapki2.PNG" />
+               </ImageView>
+            </VBox>
+         </HBox>
+         <VBox prefHeight="236.0" prefWidth="140.0">
+            <HBox prefHeight="59.0" prefWidth="93.0">
+               <Button fx:id="dshbButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeSceneToDashboard" prefHeight="25.0" prefWidth="75.0" text="Dashboard" textFill="#fcf9f9">
+                  <styleClass>
+                     <String fx:value="gradient-background" />
+                     <String fx:value="line-color" />
+                  </styleClass>
+               </Button>
+            </HBox>
+            <HBox maxHeight="-Infinity" prefHeight="60.0" prefWidth="130.0">
+               <Button fx:id="tblButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeSceneToTables" prefHeight="25.0" prefWidth="75.0" text="Tables" textFill="#fcf9f9">
+                  <styleClass>
+                     <String fx:value="gradient-background" />
+                     <String fx:value="line-color" />
+                  </styleClass>
+               </Button>
+            </HBox>
+            <HBox prefHeight="59.0">
+               <Button fx:id="golButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeSceneToGoals" prefHeight="25.0" prefWidth="76.0" text="Goals" textFill="#fcf9f9">
+                  <styleClass>
+                     <String fx:value="gradient-background" />
+                     <String fx:value="line-color" />
+                  </styleClass>
+               </Button>
+            </HBox>
+         </VBox>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="128.0" prefWidth="430.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="229.0" prefWidth="430.0">
+            <VBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="203.0" prefWidth="416.0">
+               <children>
+                  <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="201.0" prefWidth="371.0">
+                     <children>
+                        <TableView fx:id="tableView" prefHeight="207.0" prefWidth="416.0">
+                          <columns>
+                            <TableColumn fx:id="dataOfExpenseCol" prefWidth="124.5" text="Date_of_expense" />
+                            <TableColumn fx:id="groceriesCol" prefWidth="71.5" text="Groceries" />
+                              <TableColumn fx:id="billsCol" prefWidth="73.5" text="Bills" />
+                              <TableColumn fx:id="entertainmentCol" prefWidth="145.5" text="Entertainment" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </StackPane>
+               </children></VBox>
+            <VBox maxWidth="-Infinity" prefHeight="30.0" prefWidth="415.0">
+               <children>
+                  <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="415.0">
+                     <children>
+                        <TextField fx:id="dateField" prefHeight="25.0" prefWidth="134.0" />
+                        <TextField fx:id="groceriesField" prefHeight="25.0" prefWidth="69.0" />
+                        <TextField fx:id="billsField" prefHeight="25.0" prefWidth="83.0" />
+                        <TextField fx:id="entertainmentField" layoutX="293.0" layoutY="10.0" prefHeight="25.0" prefWidth="121.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </VBox>
+         <HBox prefHeight="36.0" prefWidth="430.0">
+            <children>
+               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="177.0" text="Date" textFill="#fcf9f9" />
+               <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="148.0" text="Groceries" textFill="#fcf9f9" />
+               <Label alignment="CENTER" layoutX="146.0" layoutY="10.0" prefHeight="27.0" prefWidth="113.0" text="Bills" textFill="#fcf9f9" />
+               <Label alignment="CENTER" layoutX="282.0" layoutY="10.0" prefHeight="36.0" prefWidth="208.0" text="Entertainment" textFill="#fcf9f9" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="73.0" prefWidth="297.0">
+            <children>
+               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addExpense" text="Add" />
+            </children>
+         </HBox>
+      </VBox>
+   </center>
+</BorderPane>
