@@ -61,11 +61,11 @@ public class DashboardController extends SceneController implements Initializabl
     {
 
 
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/financial_calculator?serverTimezone=UTC", "root", "password");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/registration?serverTimezone=UTC", "root", "password");
 
         Statement stmt = connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, bills FROM expensesTable");
+        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, bills FROM usertable");
 
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 

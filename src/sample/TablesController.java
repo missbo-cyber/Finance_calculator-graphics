@@ -82,11 +82,11 @@ public class TablesController extends SceneController implements Initializable
         billsCol.setCellValueFactory(new PropertyValueFactory<>("Bills"));
         entertainmentCol.setCellValueFactory(new PropertyValueFactory<>("Entertainment"));
 
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/financial_calculator?serverTimezone=UTC", "root", "password");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/registration?serverTimezone=UTC", "root", "password");
 
         Statement stmt = connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, groceries,bills, entertainment FROM expensesTable");
+        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, groceries,bills, entertainment FROM usertable");
 
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
@@ -102,11 +102,11 @@ public class TablesController extends SceneController implements Initializable
 
     public void addExpense(ActionEvent event) throws SQLException
     {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/financial_calculator?serverTimezone=UTC", "root", "password");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/registration?serverTimezone=UTC", "root", "password");
 
         Statement stmt = connection.createStatement();
 
-        String query = "INSERT INTO expensesTable (date_of_expense, groceries, bills, entertainment, user_id) VALUES ('" + dateField.getText()+"',"+ groceriesField.getText() + ","+ billsField.getText() + ","+ entertainmentField.getText() + ",0)";
+        String query = "INSERT INTO usertable (date_of_expense, groceries, bills, entertainment) VALUES ('" + dateField.getText()+"',"+ groceriesField.getText() + ","+ billsField.getText() + ","+ entertainmentField.getText() + ")";
 
         stmt.executeUpdate(query);
 
