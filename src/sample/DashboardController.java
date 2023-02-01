@@ -65,7 +65,7 @@ public class DashboardController extends SceneController implements Initializabl
 
         Statement stmt = connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, bills FROM expensesTable");
+        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, bills FROM expensestable");
 
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 

@@ -86,7 +86,7 @@ public class TablesController extends SceneController implements Initializable
 
         Statement stmt = connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, groceries,bills, entertainment FROM expensesTable");
+        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, groceries,bills, entertainment FROM expensestable");
 
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
@@ -106,12 +106,12 @@ public class TablesController extends SceneController implements Initializable
 
         Statement stmt = connection.createStatement();
 
-        String query = "INSERT INTO expensesTable (date_of_expense, groceries, bills, entertainment, user_id) VALUES ('" + dateField.getText()+"',"+ groceriesField.getText() + ","+ billsField.getText() + ","+ entertainmentField.getText() + ",0)";
+        String query = "INSERT INTO expensesTable (date_of_expense, groceries, bills, entertainment) VALUES ('" + dateField.getText()+"',"+ groceriesField.getText() + ","+ billsField.getText() + ","+ entertainmentField.getText() + ")";
 
         stmt.executeUpdate(query);
 
 
-       String splitDate[]  =splitIntoDayMonthYear(dateField.getText());
+        String splitDate[]  =splitIntoDayMonthYear(dateField.getText());
 
 
         tableView.getItems().add(new Expense(LocalDate.of(Integer.valueOf(splitDate[0]),takeMonth(splitDate[1]),Integer.valueOf(splitDate[2])),Double.valueOf(groceriesField.getText()) ,Double.valueOf(billsField.getText()) ,Double.valueOf(entertainmentField.getText())));
@@ -127,8 +127,8 @@ public class TablesController extends SceneController implements Initializable
 
     private String[] splitIntoDayMonthYear(String date)
     {
-       String splitDate[] = date.split("-");
-       return splitDate;
+        String splitDate[] = date.split("-");
+        return splitDate;
     }
 
     private Month takeMonth(String month)
@@ -173,8 +173,8 @@ public class TablesController extends SceneController implements Initializable
 
 
 
-                case "11":
-                    return Month.NOVEMBER;
+            case "11":
+                return Month.NOVEMBER;
 
 
             case "12":
