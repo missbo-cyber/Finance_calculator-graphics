@@ -19,6 +19,7 @@ public class DashboardController extends SceneController implements Initializabl
 {
     @FXML
     private LineChart<?, ?> linechart;
+    public Label nickname;
 
 
     @Override
@@ -39,11 +40,17 @@ public class DashboardController extends SceneController implements Initializabl
         super.changeSceneToGoals(event);
     }
 
+    @FXML
+    public  void changeSceneToLogin(ActionEvent event) throws IOException
+    {
+        super.changeSceneToLogin(event);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-
+        nickname.setText(getCurrentUsername());
         try
         {
             iniLineChart();
@@ -65,7 +72,7 @@ public class DashboardController extends SceneController implements Initializabl
 
         Statement stmt = connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, bills FROM expensestable");
+        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, bills FROM expensestable WHERE user_id="+getActiveUserSessionID());
 
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 

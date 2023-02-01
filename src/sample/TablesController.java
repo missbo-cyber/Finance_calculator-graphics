@@ -3,6 +3,7 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.chart.XYChart;
@@ -28,6 +29,7 @@ public class TablesController extends SceneController implements Initializable
     public TextField groceriesField;
     public TextField billsField;
     public TextField entertainmentField;
+    public Label nickname;
 
 
 
@@ -51,8 +53,15 @@ public class TablesController extends SceneController implements Initializable
     public void changeSceneToGoals(ActionEvent event) throws IOException
     {
         super.changeSceneToGoals(event);
-        new Expense(LocalDate.of(2023, Month.JANUARY,28), 100,200,300);
+
     }
+
+    @FXML
+    public  void changeSceneToLogin(ActionEvent event) throws IOException
+    {
+        super.changeSceneToLogin(event);
+    }
+
 
 
 
@@ -60,7 +69,7 @@ public class TablesController extends SceneController implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
 
-
+        nickname.setText(getCurrentUsername());
         try
         {
             loadUserTable();
@@ -86,7 +95,7 @@ public class TablesController extends SceneController implements Initializable
 
         Statement stmt = connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, groceries,bills, entertainment FROM expensestable");
+        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, groceries,bills, entertainment FROM expensestable WHERE user_id="+getActiveUserSessionID());
 
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
@@ -106,7 +115,7 @@ public class TablesController extends SceneController implements Initializable
 
         Statement stmt = connection.createStatement();
 
-        String query = "INSERT INTO expensesTable (date_of_expense, groceries, bills, entertainment) VALUES ('" + dateField.getText()+"',"+ groceriesField.getText() + ","+ billsField.getText() + ","+ entertainmentField.getText() + ")";
+        String query = "INSERT INTO expensesTable (date_of_expense, groceries, bills, entertainment, user_id) VALUES ('" + dateField.getText()+"',"+ groceriesField.getText() + ","+ billsField.getText() + ","+ entertainmentField.getText()+"," + getActiveUserSessionID() + ")";
 
         stmt.executeUpdate(query);
 

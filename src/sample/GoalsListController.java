@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 import java.io.IOException;
@@ -17,12 +18,14 @@ public class GoalsListController extends SceneController implements Initializabl
 
     public ListView listgoals;
     ObservableList<String> goalsList = FXCollections.observableArrayList();
+    public Label nickname;
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        nickname.setText(getCurrentUsername());
         try {
             loadList();
         } catch (SQLException throwables) {
@@ -39,7 +42,7 @@ public class GoalsListController extends SceneController implements Initializabl
 
         Statement stmt = connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT * FROM listofgoals");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM listofgoals WHERE user_id="+getActiveUserSessionID());
 
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
@@ -71,6 +74,12 @@ public class GoalsListController extends SceneController implements Initializabl
     public void changeSceneToGoals(ActionEvent event) throws IOException
     {
         super.changeSceneToGoals(event);
+    }
+
+    @FXML
+    public  void changeSceneToLogin(ActionEvent event) throws IOException
+    {
+        super.changeSceneToLogin(event);
     }
 
 }
