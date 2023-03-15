@@ -4,7 +4,8 @@ module Dashboard
     requires javafx.controls;
     requires javafx.swing;
     requires  java.sql;
-    requires mysql.connector.j;
+    requires mysql.connector.java;
+
 
     exports sample;
     opens sample;

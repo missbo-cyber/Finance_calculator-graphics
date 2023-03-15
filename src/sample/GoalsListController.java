@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 import java.io.IOException;
@@ -18,14 +17,12 @@ public class GoalsListController extends SceneController implements Initializabl
 
     public ListView listgoals;
     ObservableList<String> goalsList = FXCollections.observableArrayList();
-    public Label nickname;
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        nickname.setText(getCurrentUsername());
         try {
             loadList();
         } catch (SQLException throwables) {
@@ -38,25 +35,25 @@ public class GoalsListController extends SceneController implements Initializabl
 
 
 
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/financial_calculator?serverTimezone=UTC", "root", "password");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/registration?serverTimezone=UTC", "root", "password");
 
         Statement stmt = connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT * FROM listofgoals WHERE user_id="+getActiveUserSessionID());
+        ResultSet rs = stmt.executeQuery("SELECT * FROM listofgoals");
 
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
         while(rs.next())
         {
 
-            goalsList.add(rs.getString("name_of_goal") + ": " + String.valueOf(rs.getDouble("amount")));
+        goalsList.add(rs.getString("name_of_goal") + ": " + String.valueOf(rs.getDouble("amount")));
         }
-        listgoals.setItems(goalsList);
+          listgoals.setItems(goalsList);
 
 
 
 
-    }
+}
 
     @Override
     public void changeSceneToTables(ActionEvent event) throws IOException
@@ -74,12 +71,6 @@ public class GoalsListController extends SceneController implements Initializabl
     public void changeSceneToGoals(ActionEvent event) throws IOException
     {
         super.changeSceneToGoals(event);
-    }
-
-    @FXML
-    public  void changeSceneToLogin(ActionEvent event) throws IOException
-    {
-        super.changeSceneToLogin(event);
     }
 
 }

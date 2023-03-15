@@ -3,7 +3,6 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.chart.XYChart;
@@ -29,7 +28,6 @@ public class TablesController extends SceneController implements Initializable
     public TextField groceriesField;
     public TextField billsField;
     public TextField entertainmentField;
-    public Label nickname;
 
 
 
@@ -53,15 +51,8 @@ public class TablesController extends SceneController implements Initializable
     public void changeSceneToGoals(ActionEvent event) throws IOException
     {
         super.changeSceneToGoals(event);
-
+        new Expense(LocalDate.of(2023, Month.JANUARY,28), 100,200,300);
     }
-
-    @FXML
-    public  void changeSceneToLogin(ActionEvent event) throws IOException
-    {
-        super.changeSceneToLogin(event);
-    }
-
 
 
 
@@ -69,7 +60,7 @@ public class TablesController extends SceneController implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
 
-        nickname.setText(getCurrentUsername());
+
         try
         {
             loadUserTable();
@@ -91,11 +82,11 @@ public class TablesController extends SceneController implements Initializable
         billsCol.setCellValueFactory(new PropertyValueFactory<>("Bills"));
         entertainmentCol.setCellValueFactory(new PropertyValueFactory<>("Entertainment"));
 
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/financial_calculator?serverTimezone=UTC", "root", "password");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/registration?serverTimezone=UTC", "root", "password");
 
         Statement stmt = connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, groceries,bills, entertainment FROM expensestable WHERE user_id="+getActiveUserSessionID());
+        ResultSet rs = stmt.executeQuery("SELECT date_of_expense, groceries,bills, entertainment FROM usertable");
 
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
@@ -111,16 +102,16 @@ public class TablesController extends SceneController implements Initializable
 
     public void addExpense(ActionEvent event) throws SQLException
     {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/financial_calculator?serverTimezone=UTC", "root", "password");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/registration?serverTimezone=UTC", "root", "password");
 
         Statement stmt = connection.createStatement();
 
-        String query = "INSERT INTO expensesTable (date_of_expense, groceries, bills, entertainment, user_id) VALUES ('" + dateField.getText()+"',"+ groceriesField.getText() + ","+ billsField.getText() + ","+ entertainmentField.getText()+"," + getActiveUserSessionID() + ")";
+        String query = "INSERT INTO usertable (date_of_expense, groceries, bills, entertainment) VALUES ('" + dateField.getText()+"',"+ groceriesField.getText() + ","+ billsField.getText() + ","+ entertainmentField.getText() + ")";
 
         stmt.executeUpdate(query);
 
 
-        String splitDate[]  =splitIntoDayMonthYear(dateField.getText());
+       String splitDate[]  =splitIntoDayMonthYear(dateField.getText());
 
 
         tableView.getItems().add(new Expense(LocalDate.of(Integer.valueOf(splitDate[0]),takeMonth(splitDate[1]),Integer.valueOf(splitDate[2])),Double.valueOf(groceriesField.getText()) ,Double.valueOf(billsField.getText()) ,Double.valueOf(entertainmentField.getText())));
@@ -136,8 +127,8 @@ public class TablesController extends SceneController implements Initializable
 
     private String[] splitIntoDayMonthYear(String date)
     {
-        String splitDate[] = date.split("-");
-        return splitDate;
+       String splitDate[] = date.split("-");
+       return splitDate;
     }
 
     private Month takeMonth(String month)
@@ -182,8 +173,8 @@ public class TablesController extends SceneController implements Initializable
 
 
 
-            case "11":
-                return Month.NOVEMBER;
+                case "11":
+                    return Month.NOVEMBER;
 
 
             case "12":
