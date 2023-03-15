@@ -22,7 +22,31 @@ public class SceneController
     {
         DASHBOARD,
         TABLES,
-        GOALS
+        GOALS,
+        LOGIN
+    }
+
+    private static int activeUserSessionID;
+    private static String currentUsername;
+
+    public static void setCurrentUsername(String currentUsername)
+    {
+        SceneController.currentUsername = currentUsername;
+    }
+
+    public static String getCurrentUsername()
+    {
+        return currentUsername;
+    }
+
+    public static void setActiveUserSessionID(int activeUserSessionID)
+    {
+        SceneController.activeUserSessionID = activeUserSessionID;
+    }
+
+    public static int getActiveUserSessionID()
+    {
+        return activeUserSessionID;
     }
 
     @FXML
@@ -52,6 +76,13 @@ public class SceneController
                newScene = new Scene(parent);
                break;
            }
+
+           case LOGIN -> {
+               parent   = FXMLLoader.load(getClass().getResource("loginpage.fxml"));
+               newScene = new Scene(parent);
+               break;
+           }
+
            default -> throw new IllegalStateException("Unexpected value: " + sceneName);
        }
 
@@ -77,6 +108,12 @@ public class SceneController
     public void changeSceneToGoals(ActionEvent event) throws IOException
     {
         switchScene(event,Scenes.GOALS);
+    }
+
+    @FXML
+    public  void changeSceneToLogin(ActionEvent event) throws IOException
+    {
+        switchScene(event,Scenes.LOGIN);
     }
 
 }
